@@ -1,0 +1,6 @@
+{
+  "watch": ["./telegram"],
+  "ext": "ts,js,json",
+  "ignore": ["node_modules"],
+  "exec": "pnpm run build && pnpm run start:tg"
+}

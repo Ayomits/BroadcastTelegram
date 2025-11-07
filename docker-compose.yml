@@ -1,0 +1,62 @@
+name: replicator
+
+services:
+  nats:
+    container_name: replicator-nats
+    image: nats:2.12.1-alpine3.22
+    command: -js -p 4222 -D -V
+    ports:
+      - "4222:4222" # Client port
+      - "8222:8222" # Monitoring port
+    volumes:
+      - nats_data:/data 
+    networks:
+      - nats_network
+
+  discord-bot:
+    container_name: replicator-discord-bot
+    network_mode: host
+    build:
+      args:
+        - APP_ENV=dev
+      dockerfile: ./docker/discord/Dockerfile
+    volumes:
+      - ./:/app
+    restart: always
+  
+  telegram-bot:
+    container_name: replicator-telegram-bot
+    network_mode: host
+    build:
+      args:
+        - APP_ENV=dev
+      dockerfile: ./docker/telegram/Dockerfile
+    volumes:
+      - ./:/app
+    restart: always
+
+  mongo:
+    image: mongo:7.0.9-jammy
+    container_name: replicator-mongo
+    restart: always
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo_data:/data/db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
+
+volumes:
+  mongo_data:
+    driver: local
+  nats_data:
+    driver: local
+
+networks:
+  nats_network:
