@@ -1,8 +1,9 @@
 import { nats } from "#/shared/db/nats";
-import { QueueTopics } from "#/shared/queue/const";
+import { QueueMessages } from "#/shared/queue/const";
+import { telegramPostCreatedConsumer } from "./consumers/post-created.consumer";
 
-export function registerTelegramPostTopics() {
-  nats.client?.subscribe(QueueTopics.telegram.postCreated, {
-    callback: (err, msg) => {},
+export function registerTelegramPostMessages() {
+  nats.client?.subscribe(QueueMessages.telegram.post.created, {
+    callback: telegramPostCreatedConsumer,
   });
 }

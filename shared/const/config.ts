@@ -1,5 +1,5 @@
 export const TelegramChatConfig = {
-  chat_id: 6074582602,
+  chat_id: 7744053901,
 };
 
 export const DiscordConfig = {

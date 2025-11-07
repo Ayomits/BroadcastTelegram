@@ -1,4 +1,10 @@
-import { ConnectionOptions, connect, NatsConnection } from "nats";
+import {
+  ConnectionOptions,
+  connect,
+  NatsConnection,
+  Msg,
+  NatsError,
+} from "nats";
 import { Env } from "../config";
 
 export class NatsClient {
@@ -28,6 +34,10 @@ export const nats = NatsClient.create({});
 export async function createNatsConnection() {
   return await nats.connect({
     servers: Env.NatsServer,
-    port: Env.NatsPort,
   });
 }
+
+export type NatsConsumer = (
+  err: NatsError | null,
+  msg: Msg
+) => Promise<any> | any;

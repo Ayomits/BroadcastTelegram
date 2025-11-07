@@ -4,6 +4,7 @@ import { initMiddlewares } from "./app/middlewares";
 import { logger } from "shared/logger";
 import { createStoreConnection } from "#/shared/db/connections";
 import { telegramApp } from "./app";
+import { registerTelegramQueue } from "./queue";
 
 export async function initTelegramClient() {
   initMiddlewares(telegramApp);
@@ -13,6 +14,8 @@ export async function initTelegramClient() {
   await createStoreConnection().then(() =>
     logger.info("Store connections successed")
   );
+
+  registerTelegramQueue();
 
   telegramApp.start({
     onStart: () =>

@@ -2,17 +2,22 @@
  * Подпись телеграм означает, что принимать будет телеграм бот
  * Подпись дискорд означает, что принимать будет дискорд бот
  */
-export const QueueTopics = {
+export const QueueMessages = {
   // Telegram
   telegram: {
-    postCreated: "telegram-post.created",
-    postDeleted: "telegram-post.deleted",
-    postUpdate: "telegram-post.update",
+    post: {
+      created: "telegram-post.created",
+      deleted: "telegram-post.deleted",
+      update: "telegram-post.update",
+    },
   },
 
+  // Discord
   discord: {
-    postCreated: "discord.post.created",
-    postDeleted: "discord.post.deleted",
-    postUpdate: "discord.post.update",
+    post: {
+      created: "discord.post.created",
+      deleted: "discord.post.deleted",
+      update: "discord.post.update",
+    },
   },
 };
