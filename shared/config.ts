@@ -33,5 +33,5 @@ export const Env = {
   RedisPort: Number(configService.get("REDIS_PORT") ?? 6379),
   RedisUser: configService.get("REDIS_USER"),
   RedisPswd: configService.get("REDIS_PASSWORD"),
-  RabbitMQUri: configService.get("RABBITMQ_URI"),
+  RabbitMQUri: configService.getOrThrow("RABBITMQ_URI"),
 };
