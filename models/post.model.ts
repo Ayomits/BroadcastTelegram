@@ -1,7 +1,7 @@
 import { getModelForClass, prop } from "@typegoose/typegoose";
 import { TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
 
-export class DiscordPost extends TimeStamps {
+export class Post extends TimeStamps {
   @prop({ required: true })
   telegram_message_id!: number;
 
@@ -10,6 +10,12 @@ export class DiscordPost extends TimeStamps {
 
   @prop({ required: true })
   discord_message_id!: string;
+
+  @prop({ required: true })
+  discord_channel_id!: string;
+
+  @prop({ required: true })
+  discord_guild_id!: string;
 }
 
-export const DiscordPostModel = getModelForClass(DiscordPost);
+export const PostModel = getModelForClass(Post);

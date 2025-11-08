@@ -1,5 +1,5 @@
-import { registerTelegramPostMessages } from "./posts";
+import { registerTelegramPostConsumers } from "./posts";
 
 export function registerTelegramQueue() {
-  registerTelegramPostMessages();
+  registerTelegramPostConsumers();
 }

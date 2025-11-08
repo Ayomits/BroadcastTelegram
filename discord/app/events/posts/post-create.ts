@@ -9,6 +9,8 @@ export const postCreationHandler = createEventHandler(
 
     postCreationProduce({
       discord_message_id: msg.id,
+      discord_channel_id: msg.channelId!,
+      discord_guild_id: msg.guildId!,
       images: [],
       text: msg.content,
     });

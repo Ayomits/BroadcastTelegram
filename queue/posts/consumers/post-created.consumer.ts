@@ -1,12 +1,22 @@
-import { TelegramChatConfig } from "#/shared/const/config";
+import { AppConfig } from "#/app.config";
+import { PostModel } from "#/models/post.model";
 import { Consumer } from "#/shared/queue/types";
 import { telegramApp } from "#/telegram/app";
 import { TelegramPostPayload } from "../types";
 
 export const postCreatedConsumer: Consumer = async (msg) => {
   const data = JSON.parse(msg.content.toString()) as TelegramPostPayload;
-
-  await telegramApp.api
-    .sendMessage(TelegramChatConfig.chat_id, data.text)
+  const tgMsg = await telegramApp.api
+    .sendMessage(AppConfig.chat_id, data.text)
     .catch(() => null);
+
+  if (tgMsg) {
+    await PostModel.create({
+      discord_guild_id: data.discord_guild_id,
+      discord_channel_id: data.discord_channel_id,
+      discord_message_id: data.discord_message_id,
+      telegram_chat_id: tgMsg.chat.id,
+      telegram_message_id: tgMsg.message_id,
+    });
+  }
 };

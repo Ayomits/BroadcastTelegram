@@ -1,5 +1,5 @@
 {
-  "watch": ["./discord/**", "./shared/**", "./queue/**"],
+  "watch": ["./discord/**", "./shared/**", "./queue/**", "./models/**"],
   "ext": "ts,js,json",
   "ignore": ["node_modules"],
   "exec": "pnpm run build && pnpm run start:ds"
