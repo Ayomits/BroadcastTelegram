@@ -25,7 +25,7 @@ jobs:
         with:
           registry: registry.gitlab.com
           username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_TOKEN }}
+          password: glpat-4MJghGY0_XVfdQFTvWhOh286MQp1OmlxbnphCw.01.120o8znpl
 
       - name: Build and push bot image
         uses: docker/build-push-action@v6
