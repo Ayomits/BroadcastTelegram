@@ -3,7 +3,7 @@ name: Deploy discord to prod
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - discord/**
       - shared/**

@@ -3,7 +3,7 @@ name: Deploy telegram to prod
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - telegram/**
       - shared/**
