@@ -22,12 +22,10 @@ export class ConfigService {
   }
 }
 
-const configService = ConfigService.create();
+export const configService = ConfigService.create();
 
 export const Env = {
   AppEnv: configService.get("APP_ENV") ?? ("dev" as "dev" | "prod"),
-  TelegramToken: configService.getOrThrow("TELEGRAM_TOKEN"),
-  DiscordToken: configService.getOrThrow("DISCORD_TOKEN"),
   MongoUrl:
     configService.get("MONGO_URL") ??
     "mongodb://localhost:27019?authSource=admin",
@@ -35,5 +33,5 @@ export const Env = {
   RedisPort: Number(configService.get("REDIS_PORT") ?? 6379),
   RedisUser: configService.get("REDIS_USER"),
   RedisPswd: configService.get("REDIS_PASSWORD"),
-  RabbitMQUri: configService.get("RABBITMQ_URI") || "amqp://localhost:5673",
+  RabbitMQUri: configService.get("RABBITMQ_URI"),
 };

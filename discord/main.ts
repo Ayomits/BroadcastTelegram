@@ -1,13 +1,11 @@
 import { initEvents } from "./app/events";
-import { ConfigService } from "#/shared/config";
+import { configService } from "#/shared/config";
 import { logger } from "#/shared/logger";
 import { createStoreConnection } from "#/shared/db/connections";
 import { discordClient } from "./client";
 
 export async function initDiscordClient() {
   initEvents(discordClient);
-
-  const configService = ConfigService.create();
 
   await createStoreConnection().then(() =>
     logger.info("Store connections successed")
