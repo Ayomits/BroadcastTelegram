@@ -1,14 +1,18 @@
+import { AppConfig } from "#/app.config";
 import { createEventHandler } from "#/discord/utils/create-event-handler";
 import { postCreationProduce } from "#/queue/posts/producer/post-created.producer";
 import { MarkdownTransformer } from "#/shared/messages/transformer";
-import { fmt } from "@grammyjs/parse-mode";
-import { EntitiesParser } from "@qz/telegram-entities-parser";
 import { Events, Message } from "discord.js";
 
 export const postCreationHandler = createEventHandler(
   Events.MessageCreate,
   async (msg: Message) => {
-    if (msg.author.bot || !msg.content) return;
+    if (
+      msg.author.bot ||
+      !msg.content ||
+      AppConfig.allowedChannelId !== msg.channelId
+    )
+      return;
 
     const transformedContent = MarkdownTransformer.transform(msg.content);
 
