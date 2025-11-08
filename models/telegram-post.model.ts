@@ -7,6 +7,9 @@ export class TelegramPost extends TimeStamps {
 
   @prop({ unique: true, required: true })
   message_id!: number;
+
+  @prop({ unique: true, required: true })
+  discord_message_id?: string;
 }
 
 export const TelegramPostModel = getModelForClass(TelegramPost);

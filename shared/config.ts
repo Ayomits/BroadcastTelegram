@@ -35,5 +35,5 @@ export const Env = {
   RedisPort: Number(configService.get("REDIS_PORT") ?? 6379),
   RedisUser: configService.get("REDIS_USER"),
   RedisPswd: configService.get("REDIS_PASSWORD"),
-  NatsServer: process.env.NATS_SERVER || "nats://localhost:4222",
+  RabbitMQUri: configService.get("RABBITMQ_URI") || "amqp://localhost:5673",
 };

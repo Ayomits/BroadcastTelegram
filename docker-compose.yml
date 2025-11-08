@@ -1,17 +1,14 @@
 name: replicator
 
 services:
-  nats:
-    container_name: replicator-nats
-    image: nats:2.12.1-alpine3.22
-    command: -js -p 4222 -D -V
-    ports:
-      - "4222:4222" # Client port
-      - "8222:8222" # Monitoring port
+  rabbitmq:
+    container_name: replicator-rabbitmq
+    image: rabbitmq:4.1.4-management-alpine
     volumes:
-      - nats_data:/data 
-    networks:
-      - nats_network
+    - rabbitmq_data:/var/lib/rabbitmq
+    ports:
+      - "15673:15672"
+      - "5673:5672"
 
   discord-bot:
     container_name: replicator-discord-bot
@@ -23,7 +20,10 @@ services:
     volumes:
       - ./:/app
     restart: always
-  
+    depends_on:
+      - rabbitmq
+      - mongo
+
   telegram-bot:
     container_name: replicator-telegram-bot
     network_mode: host
@@ -34,6 +34,9 @@ services:
     volumes:
       - ./:/app
     restart: always
+    depends_on:
+      - rabbitmq
+      - mongo
 
   mongo:
     image: mongo:7.0.9-jammy
@@ -55,7 +58,7 @@ services:
 volumes:
   mongo_data:
     driver: local
-  nats_data:
+  rabbitmq_data:
     driver: local
 
 networks:

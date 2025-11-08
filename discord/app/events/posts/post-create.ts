@@ -1,15 +1,16 @@
+import { createEventHandler } from "#/discord/utils/create-event-handler";
+import { postCreationProduce } from "#/queue/posts/producer/post-created.producer";
 import { Events, Message } from "discord.js";
-import { createEventHandler } from "../../../utils/create-event-handler";
-import { publishPostCreatedMessage } from "#/telegram/queue/posts/producer/publish";
 
 export const postCreationHandler = createEventHandler(
   Events.MessageCreate,
-  (msg: Message) => {
+  async (msg: Message) => {
     if (msg.author.bot || !msg.content) return;
 
-    publishPostCreatedMessage({
-      text: msg.content,
+    postCreationProduce({
+      discord_message_id: msg.id,
       images: [],
+      text: msg.content,
     });
 
     return msg.reply(msg.content);

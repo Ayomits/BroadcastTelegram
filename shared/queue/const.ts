@@ -6,9 +6,9 @@ export const QueueMessages = {
   // Telegram
   telegram: {
     post: {
-      created: "telegram-post.created",
-      deleted: "telegram-post.deleted",
-      update: "telegram-post.update",
+      created: "telegram.post.created",
+      deleted: "telegram.post.deleted",
+      update: "telegram.post.update",
     },
   },
 
@@ -20,4 +20,4 @@ export const QueueMessages = {
       update: "discord.post.update",
     },
   },
-};
+} as const;
