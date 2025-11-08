@@ -1,5 +1,4 @@
 import { AppConfig } from "#/app.config";
-import { PostModel } from "#/models/post.model";
 import { PostRepository } from "#/repositories/post.repository";
 import { Consumer } from "#/shared/queue/types";
 import { telegramApp } from "#/telegram/app";
@@ -8,7 +7,7 @@ import { TelegramPostPayload } from "../types";
 export const postCreatedConsumer: Consumer = async (msg) => {
   const data = JSON.parse(msg.content.toString()) as TelegramPostPayload;
   const tgMsg = await telegramApp.api
-    .sendMessage(AppConfig.chat_id, data.text)
+    .sendMessage(AppConfig.chat_id, data.text, { parse_mode: "Markdown" })
     .catch(() => null);
 
   if (tgMsg) {

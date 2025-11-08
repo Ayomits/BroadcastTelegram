@@ -7,6 +7,8 @@ export const postUpdatedConsumer: Consumer = async (msg) => {
   const data = JSON.parse(msg.content.toString()) as TelegramPostUpdatedPayload;
 
   await telegramApp.api
-    .editMessageText(AppConfig.chat_id, data.telegram_message_id, data.text)
+    .editMessageText(AppConfig.chat_id, data.telegram_message_id, data.text, {
+      parse_mode: "Markdown",
+    })
     .catch(null);
 };
