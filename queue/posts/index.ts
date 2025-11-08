@@ -1,5 +1,5 @@
 import { rabbitMq } from "#/shared/db/rabbitmq";
-import { QueueMessages } from "#/shared/queue/const";
+import { QueueMessages } from "#/queue/const";
 import { postCreatedConsumer } from "./consumers/post-created.consumer";
 import { postDeletedConsumer } from "./consumers/post-deleted.consumer";
 import { postUpdatedConsumer } from "./consumers/post-updated.consumer";

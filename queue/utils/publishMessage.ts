@@ -1,4 +1,4 @@
-import { rabbitMq } from "../db/rabbitmq";
+import { rabbitMq } from "../../shared/db/rabbitmq";
 
 export async function publishMessage(message: string, content: object) {
   const channel = await rabbitMq.createChannel();

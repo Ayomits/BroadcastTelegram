@@ -1,6 +1,8 @@
 import { createEventHandler } from "#/discord/utils/create-event-handler";
 import { postCreationProduce } from "#/queue/posts/producer/post-created.producer";
 import { MarkdownTransformer } from "#/shared/messages/transformer";
+import { fmt } from "@grammyjs/parse-mode";
+import { EntitiesParser } from "@qz/telegram-entities-parser";
 import { Events, Message } from "discord.js";
 
 export const postCreationHandler = createEventHandler(
@@ -8,7 +10,7 @@ export const postCreationHandler = createEventHandler(
   async (msg: Message) => {
     if (msg.author.bot || !msg.content) return;
 
-    const transformedContent = new MarkdownTransformer(msg.content).transform();
+    const transformedContent = MarkdownTransformer.transform(msg.content);
 
     postCreationProduce({
       discord_message_id: msg.id,
@@ -17,7 +19,5 @@ export const postCreationHandler = createEventHandler(
       images: [],
       text: transformedContent,
     });
-
-    return msg.reply(msg.content);
   }
 );

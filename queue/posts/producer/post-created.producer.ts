@@ -1,5 +1,5 @@
-import { QueueMessages } from "#/shared/queue/const";
-import { publishMessage } from "#/shared/queue/publishMessage";
+import { QueueMessages } from "#/queue/const";
+import { publishMessage } from "#/queue/utils/publishMessage";
 import { TelegramPostPayload } from "../types";
 
 export const postCreationProduce = (content: TelegramPostPayload) => {

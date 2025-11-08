@@ -1,5 +1,5 @@
 import { PostRepository } from "#/repositories/post.repository";
-import { Consumer } from "#/shared/queue/types";
+import { Consumer } from "#/queue/utils/types";
 import { telegramApp } from "#/telegram/app";
 import { TelegramPostDeletedPayload } from "../types";
 
