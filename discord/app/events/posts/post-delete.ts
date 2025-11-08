@@ -2,11 +2,13 @@ import { createEventHandler } from "discord/utils/create-event-handler";
 import { Events, PartialMessage } from "discord.js";
 import { postDeletionProduce } from "#/queue/posts/producer/post-deleted.producer";
 import { PostModel } from "#/models/post.model";
+import { PostRepository } from "#/repositories/post.repository";
 
 export const postDeletionHandler = createEventHandler(
   Events.MessageDelete,
   async (msg: PartialMessage) => {
-    const existed = await PostModel.findOne({ discord_message_id: msg.id });
+    const repository = PostRepository.create()
+    const existed = await repository.findOne(msg.id);
 
     if (!existed) return;
 

@@ -1,5 +1,6 @@
 import { AppConfig } from "#/app.config";
 import { PostModel } from "#/models/post.model";
+import { PostRepository } from "#/repositories/post.repository";
 import { Consumer } from "#/shared/queue/types";
 import { telegramApp } from "#/telegram/app";
 import { TelegramPostPayload } from "../types";
@@ -11,7 +12,9 @@ export const postCreatedConsumer: Consumer = async (msg) => {
     .catch(() => null);
 
   if (tgMsg) {
-    await PostModel.create({
+    const repository = PostRepository.create();
+
+    await repository.createOne({
       discord_guild_id: data.discord_guild_id,
       discord_channel_id: data.discord_channel_id,
       discord_message_id: data.discord_message_id,

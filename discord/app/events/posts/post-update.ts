@@ -2,14 +2,14 @@ import { createEventHandler } from "discord/utils/create-event-handler";
 import { Events, Message, PartialMessage } from "discord.js";
 import { PostModel } from "#/models/post.model";
 import { postUpdatedProduce } from "#/queue/posts/producer/post-updated.producer";
+import { PostRepository } from "#/repositories/post.repository";
 
 export const postMutationHandler = createEventHandler(
   Events.MessageUpdate,
   async (_: Message, msg: Message) => {
     if (!msg.content) return;
-    const existed = await PostModel.findOne({
-      discord_message_id: msg.id,
-    });
+    const repository = PostRepository.create();
+    const existed = await repository.findOne(msg.id);
 
     if (!existed) return;
 
