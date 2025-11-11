@@ -1,6 +1,6 @@
 import { createEventHandler } from "discord/utils/create-event-handler";
 import { Events, PartialMessage } from "discord.js";
-import { postDeletionProduce } from "#/queue/posts/producer/post-deleted.producer";
+import { postDeletionProduce } from "#/queue/routes/posts/producer/post-deleted.producer";
 import { PostModel } from "#/models/post.model";
 import { PostRepository } from "#/repositories/post.repository";
 

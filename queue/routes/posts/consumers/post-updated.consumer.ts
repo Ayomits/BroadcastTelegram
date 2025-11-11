@@ -4,7 +4,7 @@ import { logger } from "#/shared/logger";
 import { telegramApp } from "#/telegram/app";
 import { TelegramPostUpdatedPayload } from "../types";
 
-export const postUpdatedConsumer: Consumer = async (msg) => {
+export const postUpdatedConsumer: Consumer = async (msg, ch) => {
   const data = JSON.parse(msg.content.toString()) as TelegramPostUpdatedPayload;
 
   try {
@@ -16,7 +16,9 @@ export const postUpdatedConsumer: Consumer = async (msg) => {
         parse_mode: "HTML",
       }
     );
+    ch.ack(msg);
   } catch (err) {
+    ch.nack(msg, false, false);
     logger.error(err);
   }
 };

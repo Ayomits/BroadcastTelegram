@@ -1,6 +1,6 @@
 import { AppConfig } from "#/app.config";
 import { createEventHandler } from "#/discord/utils/create-event-handler";
-import { postCreationProduce } from "#/queue/posts/producer/post-created.producer";
+import { postCreationProduce } from "#/queue/routes/posts/producer/post-created.producer";
 import { MarkdownTransformer } from "#/shared/messages/transformer";
 import { Events, Message } from "discord.js";
 

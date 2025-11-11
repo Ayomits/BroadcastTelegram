@@ -1,9 +1,9 @@
 import { createEventHandler } from "#/discord/utils/create-event-handler";
 import { PostModel } from "#/models/post.model";
-import { postUpdatedProduce } from "#/queue/posts/producer/post-updated.producer";
+import { postUpdatedProduce } from "#/queue/routes/posts/producer/post-updated.producer";
 import {
   TelegramPostDeletedPayload,
-} from "#/queue/posts/types";
+} from "#/queue/routes/posts/types";
 import { MarkdownTransformer } from "#/shared/messages/transformer";
 import { Client, Events, TextChannel } from "discord.js";
 

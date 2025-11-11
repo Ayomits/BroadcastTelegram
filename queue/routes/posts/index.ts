@@ -26,7 +26,7 @@ export async function registerTelegramPostConsumers() {
     channel.consume(
       QueueMessages.telegram.post.created,
       (msg) => {
-        postCreatedConsumer(msg!);
+        postCreatedConsumer(msg!, channel);
       },
       {
         noAck: true,
@@ -35,7 +35,7 @@ export async function registerTelegramPostConsumers() {
     channel.consume(
       QueueMessages.telegram.post.deleted,
       (msg) => {
-        postDeletedConsumer(msg!);
+        postDeletedConsumer(msg!, channel);
       },
       {
         noAck: true,
@@ -43,7 +43,7 @@ export async function registerTelegramPostConsumers() {
     ),
     channel.consume(
       QueueMessages.telegram.post.update,
-      (msg) => postUpdatedConsumer(msg!),
+      (msg) => postUpdatedConsumer(msg!, channel),
       { noAck: true }
     ),
   ]);

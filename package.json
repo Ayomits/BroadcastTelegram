@@ -8,9 +8,11 @@
     "build": "tsc --build && tsc-alias",
     "start:tg": "node dist/telegram/main.js",
     "start:ds": "node dist/discord/main.js",
+    "start:sr": "node dist/server/main.js",
     "dev:tg": "nodemon --config nodemon.telegram.json",
     "dev:ds": "nodemon --config nodemon.discord.json",
-    "dev": "concurrently --kill-others \"pnpm run dev:tg\" \"pnpm run dev:ds\""
+    "dev:sr": "nodemon --config nodemon.server.json",
+    "dev": "concurrently --kill-others \"pnpm run dev:tg\" \"pnpm run dev:ds\" \"pnpm run dev:sr\""
   },
   "imports": {
     "#/*": ".//dist/*"
@@ -21,6 +23,7 @@
   "packageManager": "pnpm@10.15.0",
   "devDependencies": {
     "@types/amqplib": "^0.10.8",
+    "@types/express": "^5.0.5",
     "@types/node": "^24.9.1",
     "nodemon": "^3.1.10",
     "tsc-alias": "^1.8.16",
@@ -40,6 +43,7 @@
     "concurrently": "^9.2.1",
     "discord.js": "^14.24.2",
     "dotenv": "^17.2.3",
+    "express": "^5.1.0",
     "grammy": "^1.38.3",
     "ioredis": "^5.8.2",
     "mongoose": "^8.19.3"

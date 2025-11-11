@@ -5,7 +5,7 @@ import { telegramApp } from "#/telegram/app";
 import { TelegramPostPayload } from "../types";
 import { logger } from "#/shared/logger";
 
-export const postCreatedConsumer: Consumer = async (msg) => {
+export const postCreatedConsumer: Consumer = async (msg, ch) => {
   const data = JSON.parse(msg.content.toString()) as TelegramPostPayload;
   try {
     const tgMsg = await telegramApp.api
@@ -25,7 +25,9 @@ export const postCreatedConsumer: Consumer = async (msg) => {
         telegram_message_id: tgMsg.message_id,
       });
     }
+    ch.ack(msg, false);
   } catch (err) {
+    ch.nack(msg, false, false);
     logger.error(err);
   }
 };

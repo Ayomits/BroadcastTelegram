@@ -1,3 +1,3 @@
-import { ConsumeMessage } from "amqplib";
+import { Channel, ConsumeMessage } from "amqplib";
 
-export type Consumer = (msg: ConsumeMessage) => Promise<any> | any;
+export type Consumer = (msg: ConsumeMessage, ch: Channel) => Promise<any> | any;

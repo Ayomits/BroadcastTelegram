@@ -1,7 +1,7 @@
 import { createEventHandler } from "discord/utils/create-event-handler";
 import { Events, Message, PartialMessage } from "discord.js";
 import { PostModel } from "#/models/post.model";
-import { postUpdatedProduce } from "#/queue/posts/producer/post-updated.producer";
+import { postUpdatedProduce } from "#/queue/routes/posts/producer/post-updated.producer";
 import { PostRepository } from "#/repositories/post.repository";
 import { MarkdownTransformer } from "#/shared/messages/transformer";
 
